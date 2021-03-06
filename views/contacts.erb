@@ -1,0 +1,13 @@
+<h2>Contacts - <%= params[:group] %></h2>
+
+<ul>
+  <% @contacts.each do |current_contact| %>
+    <li>
+      <a href="/groups/<%= params[:group] %>/contacts/<%= current_contact[:name] %>">
+        <%= current_contact[:name] %>
+      </a>
+    </li>
+  <% end %>
+</ul>
+
+<a href="/groups/<%= params[:group] %>/new_contact">Add contact</a>

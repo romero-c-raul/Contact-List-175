@@ -24,6 +24,14 @@ def count_groups
   end
 end
 
+def valid_name?(name)
+  return false unless name.size > 0
+
+  session[:groups].none? do |group|
+    group[:name].downcase == name.downcase
+  end
+end
+
 get "/" do
   redirect "/groups"
 end
@@ -34,16 +42,36 @@ get "/groups" do
   erb :home
 end
 
+get "/groups/:group/contacts" do
+  group_name = params[:group]
+  @current_group = session[:groups].select { |group| group_name == group[:name]}[0]
+  @contacts = @current_group[:contacts]
+  
+  erb :contacts
+end
+
+get "/groups/:group/new_contact" do
+  #"Creating new #{params[:group].downcase} contact"
+  erb :new_contact
+end
+
 get "/new_group" do
   erb :new_group
 end
 
-def valid_name?(name)
-  return false unless name.size > 0
+post "/groups/:group" do
+  #"We are adding a contact"
+  group_name = params[:group]
+  @current_group = session[:groups].select { |group| group_name == group[:name]}[0]
+  @contacts = @current_group[:contacts]
 
-  session[:groups].none? do |group|
-    group[:name].downcase == name.downcase
-  end
+  @contacts << {
+                  name: params[:name],
+                  email: params[:email],
+                  cellphone: params[:cellphone]
+                }
+  
+  redirect "/groups/#{group_name}"                
 end
 
 post "/groups" do
@@ -68,4 +96,5 @@ helpers do
       "You have not created any groups (friends, family, work, etc)."
     end
   end
+
 end

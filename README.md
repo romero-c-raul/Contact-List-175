@@ -14,3 +14,20 @@
             - If names are not valid, re-render the current template
             - If names are valid, redirect to "/"
         
+
+- # 2. Add a contact to groups
+  - ## Requirements
+      - Group page should show contacts and give you the option to add new ones
+
+  - ## Implementation
+    1. Render new template when clicking group name
+    2. Within that template, show all current contacts and a button to add contacts
+    3. Clicking on adding contacts renders a new page
+        - Within that template a form will be included with:
+          - Name
+          - Celphone number
+          - Email address
+          - Birthday
+    4. There will be a submit button that submits form
+    5. If info is valid, redirect to current group directory
+    6. If info is not valid, re-render template
