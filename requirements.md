@@ -7,7 +7,7 @@
     1. Display home page 
         - Initial `home page` will display "You have not created any groups yet"
     2. Create a group 
-        - There will be a button that says `create group`
+        - There will be a link that says `create group`
     3. Clicking on `create group` will take you to a page that has a form to create a group
         - Form asks you to "Please write down the new group's name"
           - No empty names are allowed

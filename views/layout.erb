@@ -1,7 +1,13 @@
 <html>
   <title>Contact List</title>
   <body>
-    <h4>Contact List App</h4>
+    <h1>
+      <a href="/groups">Contact List App</a>
+    </h1>
+
+    <% if session[:message] %>
+      <%= session.delete(:message) %>
+    <% end %>
     
     <%= yield %>
 
