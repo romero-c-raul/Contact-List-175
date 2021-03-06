@@ -38,10 +38,18 @@ get "/new_group" do
   erb :new_group
 end
 
+def valid_name?(name)
+  return false unless name.size > 0
+
+  session[:groups].none? do |group|
+    group[:name].downcase == name.downcase
+  end
+end
+
 post "/groups" do
   new_group_name = params[:group].to_s.strip
 
-  if new_group_name.size > 0
+  if valid_name?(new_group_name)
     session[:groups] << { name: new_group_name, contacts: [] }
     session[:message] = "New group has been created!"
     redirect "/groups"

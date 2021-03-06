@@ -1,6 +1,6 @@
 <form method="post" action="/groups">
   <label for="group">Please enter a group name: 
-    <input name="group" id="group" value="">
+    <input name="group" id="group" value="<%= params[:group] %>">
     <button type="submit">Submit</button>
   </label>
 </form>
