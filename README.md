@@ -41,3 +41,9 @@
         - Test will check if new contact page is rendered
         - Test will check if contact is created succesfully
         - Test will check if empty fields are handled correctly
+
+
+- # 3. Edit group name
+- # 4. Delete group
+- # 5. Edit contact info
+- # 6. Delete contact
