@@ -67,18 +67,34 @@ get "/new_group" do
   erb :new_group
 end
 
+def valid_contact_info?(info)
+  info.none? do |param|
+    param.empty?
+  end
+end
+
 post "/groups/:group" do
   group_name = params[:group]
   @current_group = session[:groups].select { |group| group_name == group[:name]}[0]
   @contacts = @current_group[:contacts]
 
-  @contacts << {
-                  name: params[:name],
-                  email: params[:email],
-                  cellphone: params[:cellphone]
-                }
-  
-  redirect "/groups/#{group_name}"                
+  name = params[:name].strip
+  email = params[:email].strip
+  cellphone = params[:cellphone].strip
+
+  if valid_contact_info?([name, email, cellphone])
+    @contacts << {
+                    name: params[:name],
+                    email: params[:email],
+                    cellphone: params[:cellphone]
+                  }
+    
+    session[:message] = "Contact has been created!"
+    redirect "/groups/#{group_name}/contacts"
+  else
+    session[:message] = "Please fill in all fields."
+    erb :new_contact
+  end
 end
 
 post "/groups" do

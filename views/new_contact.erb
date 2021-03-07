@@ -1,13 +1,13 @@
 <p>Please enter contact information</p>
 <form method="post" action="/groups/<%= params[:group] %>">
   <label for="name">Name:
-    <input name="name" id="name" value="">
+    <input name="name" id="name" value="<%= params[:name] %>">
   </label><br>
   <label for="email">Email:
-    <input name="email" id="email" value="">
+    <input name="email" id="email" value="<%= params[:email] %>">
   </label><br>
   <label for="cellphone">Cellphone:
-    <input name="cellphone" id="cellphone" value="">
+    <input name="cellphone" id="cellphone" value="<%= params[:cellphone] %>">
   </label><br>
     <button type="submit">Submit</button>
 </form>

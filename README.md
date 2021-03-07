@@ -13,7 +13,11 @@
           - Submit button
             - If names are not valid, re-render the current template
             - If names are valid, redirect to "/"
-        
+
+    # Tests
+      - Create a test that determines if a group was created
+        - Test will check if group creation page is rendered correct
+        - Test will check if group appears on the homepage
 
 - # 2. Add a contact to groups
   - ## Requirements
@@ -31,3 +35,9 @@
     4. There will be a submit button that submits form
     5. If info is valid, redirect to current group directory
     6. If info is not valid, re-render template
+
+    # Tests
+      - Create a test that determines if contact was created
+        - Test will check if new contact page is rendered
+        - Test will check if contact is created succesfully
+        - Test will check if empty fields are handled correctly
