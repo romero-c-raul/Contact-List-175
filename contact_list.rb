@@ -50,8 +50,16 @@ get "/groups/:group/contacts" do
   erb :contacts
 end
 
+get "/groups/:group/contacts/:contact" do
+  group_name = params[:group]
+  contact_name = params[:contact]
+  @current_group = session[:groups].select { |group| group_name == group[:name]}[0]
+  @contact_info = @current_group[:contacts].select { |contact| contact[:name] == contact_name }[0]
+
+  erb :contact
+end
+
 get "/groups/:group/new_contact" do
-  #"Creating new #{params[:group].downcase} contact"
   erb :new_contact
 end
 
@@ -60,7 +68,6 @@ get "/new_group" do
 end
 
 post "/groups/:group" do
-  #"We are adding a contact"
   group_name = params[:group]
   @current_group = session[:groups].select { |group| group_name == group[:name]}[0]
   @contacts = @current_group[:contacts]
