@@ -14,7 +14,7 @@
             - If names are not valid, re-render the current template
             - If names are valid, redirect to "/"
 
-    # Tests
+    ## Tests
       - Create a test that determines if a group was created
         - Test will check if group creation page is rendered correct
         - Test will check if group appears on the homepage
@@ -36,7 +36,7 @@
     5. If info is valid, redirect to current group directory
     6. If info is not valid, re-render template
 
-    # Tests
+    ## Tests
       - Create a test that determines if contact was created
         - Test will check if new contact page is rendered
         - Test will check if contact is created succesfully
@@ -44,6 +44,16 @@
 
 
 - # 3. Edit group name
+  - ## Requirements
+      - Add an option on group page to edit page name
+
+  - ## Implementation
+      - Add a link on the group page "Edit Group"
+      - Render a new page with a text box with label "please enter new group name"
+      - If name is valid, redirect to current group page
+      - If name is not valid, re-render page with message "Name is not valid"
+
 - # 4. Delete group
 - # 5. Edit contact info
 - # 6. Delete contact
+

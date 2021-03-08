@@ -50,6 +50,10 @@ get "/groups/:group/contacts" do
   erb :contacts
 end
 
+get "/groups/:group/edit" do
+  erb :edit_group
+end
+
 get "/groups/:group/contacts/:contact" do
   group_name = params[:group]
   contact_name = params[:contact]
@@ -94,6 +98,22 @@ post "/groups/:group" do
   else
     session[:message] = "Please fill in all fields."
     erb :new_contact
+  end
+end
+
+post "/groups/:group/edit" do
+  group_name = params[:group]
+  @current_group = session[:groups].select { |group| group_name == group[:name]}[0]
+  
+  new_name = params[:group_name].strip
+  
+  if valid_name?(new_name)
+    @current_group[:name] = new_name
+    session[:message] = "Group name has been edited!"
+    redirect "/groups"
+  else
+    session[:message] = "Invalid name! Please try again."
+    erb :edit_group
   end
 end
 
