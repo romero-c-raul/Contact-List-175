@@ -32,6 +32,12 @@ def valid_name?(name)
   end
 end
 
+def valid_contact_info?(info)
+  info.none? do |param|
+    param.empty?
+  end
+end
+
 get "/" do
   redirect "/groups"
 end
@@ -69,12 +75,6 @@ end
 
 get "/new_group" do
   erb :new_group
-end
-
-def valid_contact_info?(info)
-  info.none? do |param|
-    param.empty?
-  end
 end
 
 post "/groups/:group" do
@@ -139,5 +139,4 @@ helpers do
       "You have not created any groups (friends, family, work, etc)."
     end
   end
-
 end

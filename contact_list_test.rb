@@ -66,4 +66,23 @@ class ContactListTest < Minitest::Test
     post "/groups/Work"
     assert_includes last_response.body, "Invalid name! Please try again."
   end
+
+  def test_edit_group_name
+    post "/groups", group: "Work"
+
+    post "/groups/Work/edit", group_name: "Family"
+    assert_equal 302, last_response.status
+
+    get "/groups"
+    assert_includes last_response.body, "Family"
+    refute_includes last_response.body, "Work"
+  end
+
+  def test_edit_group_name_empty_name
+    post "/groups", group: "Work"
+
+    post "/groups/Work/edit", group_name: ""
+    assert_includes last_response.body, "Invalid name! Please try again."
+    assert_includes last_response.body, '<input name="group_name"'
+  end
 end

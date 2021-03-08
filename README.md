@@ -45,13 +45,16 @@
 
 - # 3. Edit group name
   - ## Requirements
-      - Add an option on group page to edit page name
+    - Add an option on group page to edit page name
 
   - ## Implementation
-      - Add a link on the group page "Edit Group"
-      - Render a new page with a text box with label "please enter new group name"
-      - If name is valid, redirect to current group page
-      - If name is not valid, re-render page with message "Name is not valid"
+    1. Add a link on the group page "Edit Group"
+    2. Render a new page with a text box with label "please enter new group name"
+    3. If name is valid, redirect to current group page
+    4. If name is not valid, re-render page with message "Name is not valid"
+
+    ## Tests
+      - Test that checks if name changed
 
 - # 4. Delete group
 - # 5. Edit contact info
