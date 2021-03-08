@@ -45,7 +45,7 @@
 
 - # 3. Edit group name
   - ## Requirements
-    - Add an option on group page to edit page name
+    - Add an option on group page to edit group name
 
   - ## Implementation
     1. Add a link on the group page "Edit Group"
@@ -57,6 +57,21 @@
       - Test that checks if name changed
 
 - # 4. Delete group
+  - ## Requirements
+    - Add an option on group page to delete group 
+  
+  - ## Implementation
+    1. Add a button to `"contacts.erb"` that says "Delete group"
+    2. This button submits a post request to delete the current group
+    3. After deleting current group, user is re-directed to homepage
+
+    ## Tests
+      - Create a test that checks if group was deleted
+        1. Create a group
+        2. Make sure group was created
+        3. Delete group
+        4. Check flash message is displayed and group is deleted
+
 - # 5. Edit contact info
 - # 6. Delete contact
 

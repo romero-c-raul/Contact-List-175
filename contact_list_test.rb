@@ -85,4 +85,20 @@ class ContactListTest < Minitest::Test
     assert_includes last_response.body, "Invalid name! Please try again."
     assert_includes last_response.body, '<input name="group_name"'
   end
+
+  def test_delete_group 
+    post "/groups", group: "Work"
+    assert_equal 302, last_response.status
+    assert_equal "New group has been created!", session[:message]
+
+    get last_response["Location"]
+    assert_includes last_response.body, '<a href="/groups/Work/contacts'
+
+    post "/groups/Work/delete"
+    assert_equal 302, last_response.status
+    assert_equal "Group has been deleted!", session[:message]
+
+    get last_response["Location"]
+    refute_includes last_response.body, '<a href="/groups/Work/contacts'
+  end
 end

@@ -12,3 +12,7 @@
 
 <a href="/groups/<%= params[:group] %>/new_contact">Add contact</a>
 <a href="/groups/<%= params[:group] %>/edit">Edit group</a>
+<br><br>
+<form method="post" action="/groups/<%= params[:group] %>/delete">
+  <button type="submit">Delete Group</button>
+</form>

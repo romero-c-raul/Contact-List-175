@@ -101,6 +101,19 @@ post "/groups/:group" do
   end
 end
 
+post "/groups/:group/delete" do
+  group_name = params[:group]
+  @current_group = session[:groups].select { |group| group_name == group[:name]}[0]
+  
+  
+  session[:groups].delete_if do |current_group|
+    current_group[:name] == params[:group]
+  end
+
+  session[:message] = "Group has been deleted!"
+  redirect "/groups"
+end
+
 post "/groups/:group/edit" do
   group_name = params[:group]
   @current_group = session[:groups].select { |group| group_name == group[:name]}[0]
