@@ -119,4 +119,23 @@ class ContactListTest < Minitest::Test
     assert_includes last_response.body, "notraul@gmail.com"
     assert_includes last_response.body, "555-555-555"
   end
+
+  def test_delete_contact
+    post "/groups", group: "Work"
+
+    post "/groups/Work", name: "Raul", email: "raul@gmail.com", cellphone: "000-111-222"
+    assert_equal 302, last_response.status
+    assert_equal "Contact has been created!", session[:message]
+
+    get last_response["Location"]
+    assert_includes last_response.body, "Raul"
+
+    post "groups/Work/contacts/Raul/delete"
+    assert_equal 302, last_response.status
+    assert_equal "Contact has been deleted!", session[:message]
+
+    get last_response["Location"]
+    assert_equal 200, last_response.status
+    refute_includes last_response.body, "Raul"
+  end
 end

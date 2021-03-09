@@ -162,6 +162,20 @@ post "/groups/:group/contacts/:contact" do
   end
 end
 
+post '/groups/:group/contacts/:contact/delete' do
+  group_name = params[:group]
+  @current_group = session[:groups].select { |group| group_name == group[:name]}[0]
+  @contacts = @current_group[:contacts]
+  @current_contact = @contacts.select { |contact| contact[:name] == params[:contact]}[0]
+  
+  @contacts.delete_if do |current_contact|
+    current_contact[:name] == params[:contact]
+  end
+
+  session[:message] = "Contact has been deleted!"
+  redirect "/groups/#{params[:group]}/contacts"
+end
+
 post "/groups" do
   new_group_name = params[:group].to_s.strip
 

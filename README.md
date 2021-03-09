@@ -89,4 +89,17 @@
         4. Check if info changed in specific contact's page
 
 - # 6. Delete contact
+  - ## Requirements
+    - Add an option on contact page to delete contact
+  
+  - ## Implementation
+    1. Add a button to `"contact.erb"` that says "Delete contact"
+    2. This button submits a post request to delete the current contact
+    3. After deleting current contact, user is re-directed to contacts
 
+    ## Tests
+      - Create a test that checks if contact was deleted
+        1. Create a contact
+        2. Make sure contact was created
+        3. Delete contact
+        4. Check flash message is displayed and contact is deleted 

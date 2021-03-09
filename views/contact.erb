@@ -2,3 +2,7 @@
 <p>Email: <%= @contact_info[:email] %></p>
 <p>Cellphone: <%= @contact_info[:cellphone] %></p>
 <a href="../contacts/<%= params[:contact] %>/edit">Edit contact</a>
+<br><br>
+<form method="post" action="/groups/<%= params[:group] %>/contacts/<%= params[:contact] %>/delete">
+  <button type="submit">Delete Contact</button>
+</form>
