@@ -73,5 +73,20 @@
         4. Check flash message is displayed and group is deleted
 
 - # 5. Edit contact info
+  - ## Requirements
+    - Add an option on group page to edit contact info
+
+  - ## Implementation
+    1. Add a button to `"contact.erb"` that says "Edit info"
+    2. Render a new page with all the fields that are included
+    3. Submit info and redirect to contact
+
+    ## Tests
+      - Create a test that checks if info was edited
+        1. Create a group and contact
+        2. Edit info
+        3. Check if name changed on contacts page
+        4. Check if info changed in specific contact's page
+
 - # 6. Delete contact
 

@@ -1,0 +1,13 @@
+<p>Edit contact information</p>
+<form method="post" action="/groups/<%= params[:group] %>/contacts/<%= params[:contact] %>">
+  <label for="name">Name:
+    <input name="name" id="name" value="<%= @contact_info[:name] %>">
+  </label><br>
+  <label for="email">Email:
+    <input name="email" id="email" value="<%= @contact_info[:email] %>">
+  </label><br>
+  <label for="cellphone">Cellphone:
+    <input name="cellphone" id="cellphone" value="<%= @contact_info[:cellphone] %>">
+  </label><br>
+    <button type="submit">Submit</button>
+</form>

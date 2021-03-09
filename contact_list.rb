@@ -69,6 +69,15 @@ get "/groups/:group/contacts/:contact" do
   erb :contact
 end
 
+get "/groups/:group/contacts/:contact/edit" do
+  group_name = params[:group]
+  contact_name = params[:contact]
+  @current_group = session[:groups].select { |group| group_name == group[:name]}[0]
+  @contact_info = @current_group[:contacts].select { |contact| contact[:name] == contact_name }[0]
+
+  erb :edit_contact
+end
+
 get "/groups/:group/new_contact" do
   erb :new_contact
 end
@@ -127,6 +136,29 @@ post "/groups/:group/edit" do
   else
     session[:message] = "Invalid name! Please try again."
     erb :edit_group
+  end
+end
+
+post "/groups/:group/contacts/:contact" do
+  group_name = params[:group]
+  @current_group = session[:groups].select { |group| group_name == group[:name]}[0]
+  @contacts = @current_group[:contacts]
+  @current_contact = @contacts.select { |contact| contact[:name] == params[:contact]}[0]
+  
+  name = params[:name].strip
+  email = params[:email].strip
+  cellphone = params[:cellphone].strip
+
+  if valid_contact_info?([name, email, cellphone])
+    @current_contact[:name] = name
+    @current_contact[:email] = email
+    @current_contact[:cellphone] = cellphone
+    
+    session[:message] = "Contact info has been edited!"
+    redirect "/groups/#{group_name}/contacts"
+  else
+    session[:message] = "Please fill in all fields."
+    erb :new_contact
   end
 end
 

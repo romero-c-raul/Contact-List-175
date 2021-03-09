@@ -101,4 +101,22 @@ class ContactListTest < Minitest::Test
     get last_response["Location"]
     refute_includes last_response.body, '<a href="/groups/Work/contacts'
   end
+
+  def test_edit_contact_info
+    post "/groups", group: "Work"
+    post "/groups/Work", name: "Raul", email: "raul@gmail.com", cellphone: "000-111-222"
+
+    post "/groups/Work/contacts/Raul", name: "notRaul", email: "notraul@gmail.com", cellphone: "555-555-555"
+    assert_equal 302, last_response.status
+    assert_equal "Contact info has been edited!", session[:message]
+    
+    get last_response["Location"]
+    assert_includes last_response.body, '<a href="/groups/Work/contacts/notRaul'
+    refute_includes last_response.body, '<a href="/groups/Work/contacts/Raul'
+
+    get "/groups/Work/contacts/notRaul"
+    assert_equal 200, last_response.status
+    assert_includes last_response.body, "notraul@gmail.com"
+    assert_includes last_response.body, "555-555-555"
+  end
 end
